@@ -144,4 +144,12 @@ router.post('/logout', (req, res) => {
   });
 });
 
+router.get('/loggedin', (req, res, next) => {
+  if(req.isAuthenticated()){
+    return res.status(200).json(req.user);
+  } else {
+    return res.status(403).json({ message: 'Forbbiden' });
+  }
+})
+
 module.exports = router;

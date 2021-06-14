@@ -8,12 +8,24 @@ class AuthService {
     });
   }
 
+  signupOwner(data) {
+    return (this.instance.post('/owner', data));
+  }
+
+  signupClient(data) {
+    return (this.instance.post('/client', data));
+  }
+
   login(data) {
     return (this.instance.post('/login', data));
   }
 
   logout() {
     return (this.instance.post('/logout'));
+  }
+
+  isLoggedIn() {
+    return (this.instance.get('/loggedin'));
   }
 }
 
