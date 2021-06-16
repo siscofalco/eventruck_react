@@ -107,15 +107,14 @@ class AuthProvider extends React.Component {
           isLoading,
           isLoggedIn,
           user,
-          signup: this.signup,
-          signupVenue: this.signupVenue,
+          signupClient: this.signupClient,
+          signupOwner: this.signupOwner,
           login: this.login,
           logout: this.logout,
-          editPromoter: this.editPromoter,
-          editVenue: this.editVenue,
-          deletePromoter: this.editPromoter,
-          deletePromoter: this.deletePromoter,
-          deleteVenue: this.deleteVenue,
+          editClient: this.editClient,
+          editOwner: this.editOwner,
+          deleteClient: this.editClient,
+          deleteOwner: this.deleteOwner,
         }}
       >
         {this.props.children}
