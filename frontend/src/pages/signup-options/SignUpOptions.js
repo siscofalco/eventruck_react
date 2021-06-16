@@ -2,6 +2,7 @@ import { Grid, Button } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
 import SignUpCard from '../../components/SignupCard/SignUpCard';
 import SignUpCardOwner from '../../components/SignupCard/SignupCardOwner';
 
@@ -16,6 +17,7 @@ export default function SignUpOptions() {
   const classes = useStyles();
   return (
     <div>
+      <Navbar />
       <h1>Sign Up as a client or owner</h1>
       <Grid
         container
