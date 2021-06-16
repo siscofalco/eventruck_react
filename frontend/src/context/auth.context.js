@@ -5,10 +5,12 @@ import PrivateService from '../services/private.service';
 const { Consumer, Provider } = React.createContext();
 
 class AuthProvider extends React.Component {
-  state = {
-    isLoggedIn: false,
-    isLoading: true,
-    user: null,
+  constructor() {
+    state = {
+      isLoggedIn: false,
+      isLoading: true,
+      user: null,
+    };
   };
 
   authService = new AuthService();
@@ -73,7 +75,7 @@ class AuthProvider extends React.Component {
   };
 
   editClient = (data) => {
-    console.log(data)
+    console.log(data);
     this.privateService
       .editClient(data)
       .then((response) => this.setState({ ...this.state, user: response.data }))
@@ -113,7 +115,7 @@ class AuthProvider extends React.Component {
           editVenue: this.editVenue,
           deletePromoter: this.editPromoter,
           deletePromoter: this.deletePromoter,
-          deleteVenue: this.deleteVenue
+          deleteVenue: this.deleteVenue,
         }}
       >
         {this.props.children}
@@ -123,33 +125,44 @@ class AuthProvider extends React.Component {
 }
 
 const withAuth = (WrappedComponent) => {
-    return function(props){
-      return (
-        <Consumer>
-          {value => {
-            const { isLoading, isLoggedIn, user, signupOwner, signupClient, login, logout, editOwner, editClient, deleteOwner, deleteClient } =
-              value;
-  
-            return (
-              <WrappedComponent
-                isLoggedIn={isLoggedIn}
-                isLoading={isLoading}
-                user={user}
-                signupOwner={signupOwner}
-                signupClient={signupClient}
-                login={login}
-                logout={logout}
-                editOwner={editOwner}
-                editClient={editClient}
-                deleteOwner={deleteOwner}
-                deleteClient={deleteClient}
-                {...props}
-              />
-            );
-          }}
-        </Consumer>
-      );
-    };
-}
+  return function (props) {
+    return (
+      <Consumer>
+        {(value) => {
+          const {
+            isLoading,
+            isLoggedIn,
+            user,
+            signupOwner,
+            signupClient,
+            login,
+            logout,
+            editOwner,
+            editClient,
+            deleteOwner,
+            deleteClient,
+          } = value;
 
-export {AuthProvider, withAuth};
+          return (
+            <WrappedComponent
+              isLoggedIn={isLoggedIn}
+              isLoading={isLoading}
+              user={user}
+              signupOwner={signupOwner}
+              signupClient={signupClient}
+              login={login}
+              logout={logout}
+              editOwner={editOwner}
+              editClient={editClient}
+              deleteOwner={deleteOwner}
+              deleteClient={deleteClient}
+              {...props}
+            />
+          );
+        }}
+      </Consumer>
+    );
+  };
+};
+
+export { AuthProvider, withAuth };
